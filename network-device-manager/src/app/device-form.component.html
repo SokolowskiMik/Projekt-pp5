@@ -1,0 +1,22 @@
+<form (ngSubmit)="addDevice()">
+    <label>
+      Device Name:
+      <input [(ngModel)]="newDevice.name" name="name" required />
+    </label>
+    <label>
+      Type:
+      <select [(ngModel)]="newDevice.type" name="type">
+        <option *ngFor="let type of deviceTypes">{{ type }}</option>
+      </select>
+    </label>
+    <label>
+      IP Address:
+      <input [(ngModel)]="newDevice.ip_address" name="ip_address" required />
+    </label>
+    <label>
+      Description:
+      <textarea [(ngModel)]="newDevice.description" name="description"></textarea>
+    </label>
+    <button type="submit">Add Device</button>
+  </form>
+  
