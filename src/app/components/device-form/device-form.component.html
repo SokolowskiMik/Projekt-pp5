@@ -1,0 +1,44 @@
+<div class="container mt-4">
+  <h2>Dodaj urządzenie do sieci (ID: {{ networkId }})</h2>
+  <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="type" class="form-label">Typ urządzenia</label>
+      <select id="type" class="form-select" formControlName="type">
+        <option [value]="t" *ngFor="let t of deviceTypes">{{ t }}</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Nazwa urządzenia</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        formControlName="name"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="ip" class="form-label">Adres IP urządzenia</label>
+      <input type="text" id="ip" class="form-control" formControlName="ip" />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Opis (opcjonalnie)</label>
+      <input
+        type="text"
+        id="description"
+        class="form-control"
+        formControlName="description"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="deviceForm.invalid"
+    >
+      Dodaj urządzenie
+    </button>
+  </form>
+</div>

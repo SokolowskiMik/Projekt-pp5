@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <h2>Dodaj użytkownika do sieci (ID: {{ networkId }})</h2>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="firstName" class="form-label">Imię</label>
+      <input
+        type="text"
+        id="firstName"
+        class="form-control"
+        formControlName="firstName"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Nazwisko</label>
+      <input
+        type="text"
+        id="lastName"
+        class="form-control"
+        formControlName="lastName"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        id="email"
+        class="form-control"
+        formControlName="email"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">
+      Dodaj użytkownika
+    </button>
+  </form>
+</div>

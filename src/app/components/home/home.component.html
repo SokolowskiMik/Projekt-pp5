@@ -1,0 +1,76 @@
+<div class="container mt-4">
+  <h2>Lista podsieci</h2>
+
+  <!-- Sprawdzenie, czy mamy jakiekolwiek sieci -->
+  <div *ngIf="networks.length === 0; else networkList">
+    <p>Brak podsieci w systemie. Dodaj nową, klikając przycisk poniżej.</p>
+  </div>
+
+  <ng-template #networkList>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Nazwa</th>
+          <th>Adres IP</th>
+          <th>Maska</th>
+          <th>Gateway</th>
+          <th>DNS</th>
+          <th>Administrator</th>
+          <th>Urządzenia</th>
+          <th>Użytkownicy</th>
+          <th>Akcje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let net of networks">
+          <td>{{ net.name }}</td>
+          <td>{{ net.ip }}</td>
+          <td>{{ net.mask }}</td>
+          <td>{{ net.gateway }}</td>
+          <td>{{ net.dns }}</td>
+          <td>{{ net.admin }}</td>
+          <td>
+            <!-- liczba urządzeń -->
+            <span>{{ net.devices.length }}</span>
+            <button
+              class="btn btn-sm btn-info ms-2"
+              [routerLink]="['/deviceform', net.id]"
+            >
+              Dodaj urządzenie
+            </button>
+          </td>
+          <td>
+            <!-- liczba użytkowników -->
+            <span>{{ net.users.length }}</span>
+            <button
+              class="btn btn-sm btn-success ms-2"
+              [routerLink]="['/userform', net.id]"
+            >
+              Dodaj użytkownika
+            </button>
+          </td>
+          <td>
+            <!-- guzik usuwający sieć -->
+            <button
+              class="btn btn-sm btn-danger"
+              (click)="removeNetwork(net.id)"
+            >
+              Usuń
+            </button>
+            <!-- guzik przenoszący na widok szczegółów -->
+            <button
+              class="btn btn-sm btn-primary ms-1"
+              [routerLink]="['/network', net.id]"
+            >
+              Szczegóły
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+
+  <button class="btn btn-primary mt-3" [routerLink]="['/networkform']">
+    Dodaj nową podsieć
+  </button>
+</div>

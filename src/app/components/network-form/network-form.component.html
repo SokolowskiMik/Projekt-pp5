@@ -1,0 +1,62 @@
+<div class="container mt-4">
+  <h2>Dodaj nową sieć</h2>
+  <form [formGroup]="networkForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="ip" class="form-label">Adres IP</label>
+      <input type="text" id="ip" class="form-control" formControlName="ip" />
+    </div>
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Nazwa sieci</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        formControlName="name"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="gateway" class="form-label">Gateway</label>
+      <input
+        type="text"
+        id="gateway"
+        class="form-control"
+        formControlName="gateway"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="dns" class="form-label">DNS</label>
+      <input type="text" id="dns" class="form-control" formControlName="dns" />
+    </div>
+
+    <div class="mb-3">
+      <label for="mask" class="form-label">Maska</label>
+      <input
+        type="text"
+        id="mask"
+        class="form-control"
+        formControlName="mask"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="admin" class="form-label">Administrator</label>
+      <input
+        type="text"
+        id="admin"
+        class="form-control"
+        formControlName="admin"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="networkForm.invalid"
+    >
+      Zapisz sieć
+    </button>
+  </form>
+</div>
