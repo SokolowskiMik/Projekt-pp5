@@ -3,7 +3,10 @@
   <form [formGroup]="networkForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label for="ip" class="form-label">Adres IP</label>
-      <input type="text" id="ip" class="form-control" formControlName="ip" />
+      <input type="text" id="ip" class="form-control" formControlName="ip" [ngClass]="{ 'is-invalid': networkForm.get('ip')?.invalid && networkForm.get('ip')?.touched }" />
+      <div *ngIf="networkForm.get('ip')?.invalid && networkForm.get('ip')?.touched" class="invalid-feedback">
+        Adres IP jest wymagany.
+      </div>
     </div>
 
     <div class="mb-3">
@@ -13,7 +16,11 @@
         id="name"
         class="form-control"
         formControlName="name"
+        [ngClass]="{ 'is-invalid': networkForm.get('name')?.invalid && networkForm.get('name')?.touched }"       
       />
+      <div *ngIf="networkForm.get('name')?.invalid && networkForm.get('name')?.touched" class="invalid-feedback">
+        Nazwa sieci jest wymagana.
+      </div>
     </div>
 
     <div class="mb-3">
@@ -23,12 +30,19 @@
         id="gateway"
         class="form-control"
         formControlName="gateway"
+        [ngClass]="{ 'is-invalid': networkForm.get('gateway')?.invalid && networkForm.get('gateway')?.touched }"
       />
+      <div *ngIf="networkForm.get('gateway')?.invalid && networkForm.get('gateway')?.touched" class="invalid-feedback">
+        Gateway sieci jest wymagany.
+      </div>
     </div>
 
     <div class="mb-3">
       <label for="dns" class="form-label">DNS</label>
-      <input type="text" id="dns" class="form-control" formControlName="dns" />
+      <input type="text" id="dns" class="form-control" formControlName="dns" [ngClass]="{ 'is-invalid': networkForm.get('dns')?.invalid && networkForm.get('dns')?.touched }"/>
+      <div *ngIf="networkForm.get('dns')?.invalid && networkForm.get('dns')?.touched" class="invalid-feedback">
+        Serwer DNS jest wymagany.
+      </div>
     </div>
 
     <div class="mb-3">
@@ -38,7 +52,11 @@
         id="mask"
         class="form-control"
         formControlName="mask"
+        [ngClass]="{ 'is-invalid': networkForm.get('mask')?.invalid && networkForm.get('mask')?.touched }"
       />
+      <div *ngIf="networkForm.get('mask')?.invalid && networkForm.get('mask')?.touched" class="invalid-feedback">
+        Maska sieci jest wymagana.
+      </div>
     </div>
 
     <div class="mb-3">
@@ -48,7 +66,11 @@
         id="admin"
         class="form-control"
         formControlName="admin"
+        [ngClass]="{ 'is-invalid': networkForm.get('admin')?.invalid && networkForm.get('admin')?.touched }"
       />
+      <div *ngIf="networkForm.get('admin')?.invalid && networkForm.get('admin')?.touched" class="invalid-feedback">
+        Admin sieci jest wymagany.
+      </div>
     </div>
 
     <button

@@ -3,9 +3,15 @@
   <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label for="type" class="form-label">Typ urządzenia</label>
-      <select id="type" class="form-select" formControlName="type">
+      <select id="type" class="form-select" formControlName="type" [ngClass]="{ 'is-invalid': deviceForm.get('type')?.invalid && deviceForm.get('type')?.touched }">
         <option [value]="t" *ngFor="let t of deviceTypes">{{ t }}</option>
       </select>
+      <div
+        *ngIf="deviceForm.get('type')?.invalid && deviceForm.get('type')?.touched"
+        class="invalid-feedback"
+      >
+        Wybór typu urządzenia jest wymagany.
+      </div>
     </div>
 
     <div class="mb-3">
@@ -15,12 +21,25 @@
         id="name"
         class="form-control"
         formControlName="name"
+        [ngClass]="{ 'is-invalid': deviceForm.get('name')?.invalid && deviceForm.get('name')?.touched }"
       />
+      <div
+        *ngIf="deviceForm.get('name')?.invalid && deviceForm.get('name')?.touched"
+        class="invalid-feedback"
+      >
+        Nazwa urządzenia jest wymagana.
+      </div>
     </div>
 
     <div class="mb-3">
       <label for="ip" class="form-label">Adres IP urządzenia</label>
-      <input type="text" id="ip" class="form-control" formControlName="ip" />
+      <input type="text" id="ip" class="form-control" formControlName="ip" [ngClass]="{ 'is-invalid': deviceForm.get('ip')?.invalid && deviceForm.get('ip')?.touched }" />
+      <div
+        *ngIf="deviceForm.get('ip')?.invalid && deviceForm.get('ip')?.touched"
+        class="invalid-feedback"
+      >
+        Adres IP urządzenia jest wymagany.
+      </div>
     </div>
 
     <div class="mb-3">

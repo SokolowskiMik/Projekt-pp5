@@ -1,0 +1,15 @@
+services:
+  network-management:
+    container_name: network-managementcontainer
+    build: .
+    image: network-management:v1
+    ports:
+      - 80:80
+    expose:
+      - 80
+    networks:
+      - internalnet
+
+networks:
+  internalnet:
+    driver: bridge
