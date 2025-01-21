@@ -1,28 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { NetworkService } from '../../services/network.service';
-import { Network } from '../../models/network';
+import { Component, OnInit } from "@angular/core";
+import { NetworkService } from "../../services/network.service";
+import { Network } from "../../models/network";
 
 @Component({
-  standalone: false,
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+    standalone: false,
+    selector: "app-home",
+    templateUrl: "./home.component.html",
+    styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
-  networks: Network[] = [];
+    networks: Network[] = [];
 
-  constructor(private networkService: NetworkService) {}
+    constructor(private networkService: NetworkService) {}
 
-  ngOnInit(): void {
-    this.loadNetworks();
-  }
+    ngOnInit(): void {
+        this.loadNetworks();
+    }
 
-  loadNetworks(): void {
-    this.networks = this.networkService.getAllNetworks();
-  }
-  removeNetwork(networkId: number) {
-    this.networkService.removeNetwork(networkId);
-    // Odśwież listę:
-    this.loadNetworks();
-  }
+    loadNetworks(): void {
+        this.networkService.getAllNetworks().subscribe({
+            next: (networks: Network[]) => {
+                this.networks = networks;
+            },
+            error: (err) => {
+                console.error("Błąd przy pobieraniu sieci:", err);
+            },
+        });
+    }
+
+    removeNetwork(networkId: string): void {
+        this.networkService.removeNetwork(networkId).subscribe({
+            next: () => {
+                this.loadNetworks();
+            },
+            error: (err) => {
+                console.error("Błąd przy usuwaniu sieci:", err);
+            },
+        });
+    }
 }
